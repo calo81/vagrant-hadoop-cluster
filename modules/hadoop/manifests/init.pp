@@ -67,16 +67,4 @@ file {
   group => root,
   require => Exec["unpack_hadoop"]
  }
- 
- exec { "format_namenode" :
-  command => "sudo ${hadoop_home}-1.0.3/bin/hadoop namenode -format",
-  path => $path,
-  require => File["${hadoop_home}-1.0.3/conf/hdfs-site.xml"]
-}
-
- exec { "start_daemons" :
-  command => "sudo ${hadoop_home}-1.0.3/bin/start-all.sh",
-  path => $path,
-  require => Exec["format_namenode"]
-}
 }

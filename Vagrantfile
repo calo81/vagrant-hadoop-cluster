@@ -9,11 +9,6 @@ Vagrant::Config.run do |config|
      puppet.module_path = "modules"
   end
   
-  config.vm.define :master do |master_config|
-    master_config.vm.network :hostonly, "192.168.1.10"
-    master_config.vm.host_name = "master"
-  end
-
   config.vm.define :backup do |backup_config|
     backup_config.vm.network :hostonly, "192.168.1.11"
     backup_config.vm.host_name = "backup"
@@ -33,4 +28,10 @@ Vagrant::Config.run do |config|
     hadoop3_config.vm.network :hostonly, "192.168.1.14"
     hadoop3_config.vm.host_name = "hadoop3"
   end
+  
+   config.vm.define :master do |master_config|
+    master_config.vm.network :hostonly, "192.168.1.10"
+    master_config.vm.host_name = "master"
+  end
+
 end
