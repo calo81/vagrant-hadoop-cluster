@@ -13,4 +13,16 @@ gem install vagrant
 
 vagrant box add base-hadoop http://files.vagrantup.com/lucid64.box
 
+
+Maybe generate your own ssh-keygen pair of keys.. and replace them in the files id_rsa and id_rsa.pub in the modules/hadoop/files directory
+
+
 vagrant up
+
+then 
+
+vagrant ssh master
+
+cd /opt/hadoop-xxx/bin
+
+./start-all
