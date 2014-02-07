@@ -25,4 +25,6 @@ vagrant ssh master
 
 cd /opt/hadoop-xxx/bin
 
+./hadoop namenode -format
+
 ./start-all
