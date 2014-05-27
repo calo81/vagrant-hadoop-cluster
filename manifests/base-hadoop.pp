@@ -41,8 +41,28 @@ file {
 
 ssh_authorized_key { "ssh_key":
     ensure => "present",
-    key    => "AAAAB3NzaC1yc2EAAAADAQABAAABAQDkvEvvmbrAb+EMTPVdHSPdHcNxOxYZs/24p3ZjaEpKtivYIu/s8gUeC15VQb2T9v0mGLQEGgjiUKmeS7m4wumQTB4E7atnYze4LaXdLTmK2fHVckxbl4uide2rAOzEUAYI84fd+6JzldT8F+DsQ38214pnvaFHdXLvf3Xcz9ks3KlNVseqxBNRSiWXovE2MQttXHS8ZU6LGaJB7tyrtGrY+viEcbJBMASMjC2UYZtZP0C6b86z6BjUnQl/1xBdw3JGrG2OXrWriiHcf/ZXMnn1pTF0Hy/EFK44xC93BOrrf6szvRBo85ZwgDcmu6Y3yu+OYRe/scdKNznJy1WT+5e/",
+    key    => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCeHdBPVGuSPVOO+n94j/Y5f8VKGIAzjaDe30hu9BPetA+CGFpszw4nDkhyRtW5J9zhGKuzmcCqITTuM6BGpHax9ZKP7lRRjG8Lh380sCGA/691EjSVmR8krLvGZIQxeyHKpDBLEmcpJBB5yoSyuFpK+4RhmJLf7ImZA7mtxhgdPGhe6crUYRbLukNgv61utB/hbre9tgNX2giEurBsj9CI5yhPPNgq6iP8ZBOyCXgUNf37bAe7AjQUMV5G6JMZ1clEeNPN+Uy5Yrfojrx3wHfG40NuxuMrFIQo5qCYa3q9/SVOxsJILWt+hZ2bbxdGcQOd9AXYFNNowPayY0BdAkSr",
     type   => "ssh-rsa",
     user   => "root",
     require => File['/root/.ssh/id_rsa.pub']
+}
+
+host { 'hadoop1':
+    ip => '192.168.1.12',
+}
+
+host { 'hadoop2':
+    ip => '192.168.1.13',
+}
+
+host { 'hadoop3':
+    ip => '192.168.1.14',
+}
+
+host { 'master':
+    ip => '192.168.1.10',
+}
+
+host { 'backup':
+    ip => '192.168.1.11',
 }
