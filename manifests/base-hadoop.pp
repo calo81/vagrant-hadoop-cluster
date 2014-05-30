@@ -1,4 +1,5 @@
 include hadoop
+include mahout
 group { "puppet":
   ensure => "present",
 }
