@@ -1,0 +1,3 @@
+<%= @hadoop_1 %>
+<%= @hadoop_2 %>
+<%= @hadoop_3 %>

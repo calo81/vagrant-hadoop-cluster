@@ -13,9 +13,9 @@ Vagrant::Config.run do |config|
      puppet.module_path = "modules"
   end
   
-  config.vm.define :backup do |backup_config|
-    backup_config.vm.network :hostonly, "10.10.0.51"
-    backup_config.vm.host_name = "backup"
+  config.vm.define :backup do |box|
+    box.vm.network :hostonly, "10.10.0.51"
+    box.vm.host_name = "backup"  
   end
   
   config.vm.define :hadoop1 do |hadoop1_config|
