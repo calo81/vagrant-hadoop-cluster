@@ -3,7 +3,7 @@
  <configuration>
   <property>
    <name>fs.default.name</name>
-   <value>hdfs://192.168.1.10:9000</value>
+   <value>hdfs://10.10.0.52:9000</value>
    <description>The name of the default file system. A URI whose scheme and authority determine the FileSystem implementation.</description>
   </property>
  </configuration>
