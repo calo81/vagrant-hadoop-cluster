@@ -83,6 +83,15 @@ ssh_authorized_key { "ssh_key":
     require => File["/home/${user}/.ssh/id_rsa.pub"]
 }
 
+file{
+  "/home/${user}/.ssh/config":
+  owner => "${user}",
+  group => "${group}",
+  mode => 755,
+  content => "StrictHostKeyChecking no",
+  require => File["/home/${user}/.ssh/id_rsa.pub"]
+}
+
 host { 'hadoop1':
     ip => "${hadoop_1}",
 }
