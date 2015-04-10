@@ -1,0 +1,9 @@
+# Reference - https://github.com/rodjek/librarian-puppet
+# librarian-puppet ensures that these modules are provisioned on the guest
+# such that we can then use these modules in the puppet apply phase to get 
+# things done.
+
+forge "https://forgeapi.puppetlabs.com" 
+mod "puppetlabs/stdlib"
+mod "puppetlabs/apt"
+mod "saz/timezone"
