@@ -77,7 +77,7 @@ if [ "$(gem list -i '^librarian-puppet$')" = "false" ]; then
   echo 'librarian-puppet installed.'
   cd $PUPPET_DIR && librarian-puppet install --clean --verbose
 else
-	cd $PUPPET_DIR && librarian-puppet update --verbose
+  cd $PUPPET_DIR && librarian-puppet update --verbose
 fi
 echo 'librarian-puppet installed.'
 

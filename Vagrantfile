@@ -73,7 +73,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # then any machine specific provisioning is completed
   
   # Shell provisioning
-  config.vm.provision :shell, :path => 'shell/main.sh'
+  # config.vm.provision :shell, :path => 'shell/main.sh'
+  
+  # Puppet provisioning
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file  = "main.pp"
+  end
   
 
 end
