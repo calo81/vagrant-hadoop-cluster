@@ -1,6 +1,4 @@
-$install_dir = "/opt"
-$hadoop_version = "2.6.0"
-$hadoop_home = "${install_dir}/hadoop-${hadoop_version}"
+# Some variables
 $user = "hdpusr"
 $group = "hdpusr"
 $hadoop_backup = '192.168.48.9'
@@ -8,6 +6,17 @@ $hadoop_master = '192.168.48.10'
 $hadoop_1 = '192.168.48.11'
 $hadoop_2 = '192.168.48.12'
 $hadoop_3 = '192.168.48.13'
+
+
+# Set path for exec
+Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ] }
+
+
+# Set Timezone
+# Change as needed to a value shown by the command 'timedatectl list-timezones' on Ubuntu.
+class { 'timezone':
+  timezone => 'America/Los_Angeles',
+}
 
 
 # Create the hadoop user hdpusr and its home directory
@@ -57,4 +66,7 @@ host { 'backup':
 }
 
 
+include ssh
+include java
+include hadoop
 
