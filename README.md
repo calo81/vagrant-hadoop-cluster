@@ -1,30 +1,45 @@
-vagrant-hadoop-cluster
+vagrant-hadoop-spark
 ======================
 
-Deploying hadoop in a virtualized cluster in simple steps
+Install
 
-These are the files that support the blogpost http://cscarioni.blogspot.co.uk/2012/09/setting-up-hadoop-virtual-cluster-with.html
+Hadoop Core (HDFS, YARN)
+Ambari
+Hive
+Oozie/Airflow
+Zookeeper
+Pig
+Flume
+Kafka
+R Studio Server (Open Source)
+HBASE (optional)
+CASK
+Spark - interactive data analysis + Machine learning
+Shiny
+Prediction.io
+OpenCPU/Yhat/Openscoring.io - more important
 
-For using them.
 
-Simply clone the repository, then
+Configuration Files
+===================
 
-`gem install vagrant `
+Reference - http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.15/bk_cluster-planning-guide/content/typical-hadoop-cluster-hardware.html
 
-`vagrant box add base-hadoop http://files.vagrantup.com/lucid64.box`
+slaves - done
+hadoop-env.sh
+yarn-env.sh
+mapred-env.sh
+
+core-site.xml
+hdfs-stie.xml
+yarn-site.xml
+mapred-site.xml
+
+httpfs-*.* - check if this is enabled by default 
+kms-*.* - check if this is enabled by default
 
 
-Maybe generate your own ssh-keygen pair of keys.. and replace them in the files id_rsa and id_rsa.pub in the modules/hadoop/files directory. Or for testing copy the provided `id_rsa` and `id_rsa.pub` into your `.ssh` directory.
 
 
-`vagrant up`
 
-then 
 
-`vagrant ssh master`
-
-`cd /opt/hadoop-xxx/bin`
-
-`./hadoop namenode -format`
-
-`./start-all`
