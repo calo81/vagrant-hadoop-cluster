@@ -36,11 +36,11 @@ fi
 # The Trusty basebox does not have ruby-dev package installd by default. Install
 # the same.
 
-echo 'Check ruby1.9.1-dev installed' 
-$(dpkg --get-selections | grep ruby1.9.1-dev  > /dev/null   2>&1)
+echo 'Check ruby1.9.3 installed' 
+$(dpkg --get-selections | grep ruby1.9.3  > /dev/null   2>&1)
 FOUND_RUBY_DEV=$?
 if [ "$FOUND_RUBY_DEV" -ne '0' ]; then
-  echo 'ruby1.9.1-dev not found. Attempting to install .....'
+  echo 'ruby1.9.3 not found. Attempting to install .....'
   $(which apt-get > /dev/null 2>&1)
   FOUND_APT=$?
   $(which yum > /dev/null 2>&1)
@@ -48,17 +48,17 @@ if [ "$FOUND_RUBY_DEV" -ne '0' ]; then
 
   if [ "${FOUND_YUM}" -eq '0' ]; then
     yum -q -y makecache
-    yum -q -y install ruby1.9.1-dev
-    echo 'ruby1.9.1-dev installed.'
+    yum -q -y install ruby1.9.3
+    echo 'ruby1.9.3 installed.'
   elif [ "${FOUND_APT}" -eq '0' ]; then
     apt-get -q -y update
-    apt-get -q -y install ruby1.9.1-dev
-    echo 'ruby1.9.1-dev installed.'
+    apt-get -q -y install ruby1.9.3
+    echo 'ruby1.9.3 installed.'
   else
     echo 'No package installer available. You may need to install git manually.'
   fi
 else
-  echo 'ruby1.9.1-dev found .....'
+  echo 'ruby1.9.3 found .....'
 fi
 
 echo 'Creating puppet directory .....'
