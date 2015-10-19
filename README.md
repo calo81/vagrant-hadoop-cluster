@@ -1,5 +1,26 @@
-vagrant-hadoop-spark
+vagrant-hadoop-cluster
 ======================
+
+Motivation
+----------
+
+__vagrant-hadoop-cluster__ can be used to quickly setup a virtual hadoop cluster on your laptop. 
+
+The motivation behind this project is to 
+
+  * understand the workings of hadoop in an actual cluster environment, but to be able to do so on a single machine. 
+  * to be able to setup the cluster quickly in an automated fashion.
+  * to provide a platform to quickly evaluate projects in the Hadoop ecosystem.
+
+Hadoop Ecosystem Projects
+-------------------------
+
+
+
+
+
+
+
 
 Install
 
@@ -16,8 +37,7 @@ HBASE (optional)
 CASK
 Spark - interactive data analysis + Machine learning
 Shiny
-Prediction.io
-OpenCPU/Yhat/Openscoring.io - more important
+Prediction.io/OpenCPU/Openscoring.io/DeployR - more important (hosted Yhat, Sense.io)
 
 
 Configuration Files
