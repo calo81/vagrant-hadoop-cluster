@@ -1,12 +1,12 @@
 class hadoop {
 
+  $hadoop_version = "2.6.1"
   $install_dir = "/opt"
-  $hadoop_version = "2.7.0"
-  $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"
-  $hadoop_conf = "${hadoop_home}/etc/hadoop"
+  $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"                        # /opt/hadoop-2.6.1
+  $hadoop_conf = "${hadoop_home}/etc/hadoop"                                      # /opt/hadoop-2.6.1/etc/hadoop
   $apache_mirror = "http://psg.mtu.edu/pub/apache/hadoop/common"
 
-
+  # Hadoop binary download and unpacking
   exec { "download_hadoop":
     command => "wget -O /tmp/hadoop.tar.gz ${apache_mirror}/hadoop-${hadoop_version}/hadoop-${hadoop_version}.tar.gz",
     path => $path,
@@ -53,6 +53,24 @@ class hadoop {
     require => File["${hadoop_conf}"]
   }
 
+  file { "${hadoop_home}/conf/yarn-env.sh":
+    content => template('hadoop/yarn-env.sh'),
+    ensure => present,
+    mode => 644,
+    group => $group,
+    owner => $user,
+    require => File["${hadoop_conf}"]
+  }
+    
+  file { "${hadoop_home}/conf/mapred-env.sh":
+    content => template('hadoop/yarn-env.sh'),
+    ensure => present,
+    mode => 644,
+    group => $group,
+    owner => $user,
+    require => File["${hadoop_conf}"]
+  }
+    
   file { "${hadoop_conf}/core-site.xml":
     content => template('hadoop/core-site.xml'),
     ensure => present,
