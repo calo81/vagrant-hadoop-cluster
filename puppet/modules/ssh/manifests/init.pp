@@ -16,8 +16,8 @@ class ssh {
     source => "puppet:///modules/ssh/id_rsa",
     ensure => present,
     mode => 600,
-    owner => $user,
-    group => $user,
+    owner  => "${user}",
+    group  => "${user}",
     require => File["/home/${user}/.ssh"]
   }
 
@@ -25,15 +25,15 @@ class ssh {
     source => "puppet:///modules/ssh/id_rsa.pub",
     ensure => present,
     mode => 644,
-    owner => $user,
-    group => $user,
+    owner  => "${user}",
+    group  => "${user}",
     require => File["/home/${user}/.ssh"]
   }
 
 
   # add this key to the list of authorized keys in each node
   # this allows each node to communicate with each other
-  # without a password.
+  # without a password. 
 
   ssh_authorized_key { "ssh_key":
     ensure => "present",
