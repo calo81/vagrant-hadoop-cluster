@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
   <property>
-    <name>mapreduce.framework.name</name>
-    <value>yarn</value>
+    <name>yarn.resourcemanager.hostname</name>
+    <value><%= @hadoop_master_hn %></value>
   </property>
 </configuration>

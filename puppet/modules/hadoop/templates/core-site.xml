@@ -19,7 +19,7 @@
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://<%= @hadoop_master %>:9000</value>
+    <value>hdfs://<%= @hadoop_master_hn %>:9000</value>
     <description>The name of the default file system. A URI whose scheme and authority determine the FileSystem implementation.</description>
   </property>
 </configuration>
