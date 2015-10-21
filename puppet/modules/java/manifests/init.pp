@@ -10,8 +10,8 @@ class java {
     require => [ Exec['apt-get update'], File["/home/${user}"] ]
   }
 
-  file { "/etc/profile.d/java_env.sh":
-    source => "puppet:///modules/java/java_env.sh",
+  file { "/etc/profile.d/java_envvars.sh":
+    source => "puppet:///modules/java/java_envvars.sh",
     ensure => present,
     mode => 755,
     owner => "root",

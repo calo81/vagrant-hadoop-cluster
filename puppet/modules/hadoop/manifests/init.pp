@@ -2,8 +2,8 @@ class hadoop {
 
   $hadoop_version = "2.6.1"
   $install_dir = "/opt"
-  $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"                        # /opt/hadoop-2.6.1
-  $hadoop_conf = "${hadoop_home}/etc/hadoop/conf"                                 # /opt/hadoop-2.6.1/etc/hadoop/conf
+  $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"             # /opt/hadoop-2.6.1
+  $hadoop_conf = "${hadoop_home}/conf"                                 # /opt/hadoop-2.6.1/conf
   $hadoop_log  = "/var/log/hadoop"
   $hadoop_data = "/home/hadoop/data"
   $apache_mirror = "http://apache.cs.utah.edu/hadoop/common"
@@ -28,20 +28,39 @@ class hadoop {
     path => $path,
     require => Exec["unpack_hadoop"]    
   }
-    
+  
+  # Add Hadoop env variable file to profile.d  
+  file { "/etc/profile.d/hadoop_envvars.sh":
+    source => "puppet:///modules/hadoop/hadoop_envvars.sh",
+    ensure => present,
+    mode => 755,
+    owner => "root",
+    group => "root",
+    require => Exec["chown_hadoop"]
+  }  
+      
   # Ensure the log directory is available
   file { "${hadoop_log}":
     ensure => directory,
-    mode => 774,
+    mode => 755,
     group => $group,
     owner => $user,
     require => Exec["chown_hadoop"]
   }
     
-  # Ensure the config directory is available at /opt/hadoop-2.6.1/etc/hadoop/conf
+  # Ensure the data directory is available
+  file { "${hadoop_data}":
+    ensure => directory,
+    mode => 755,
+    group => $group,
+    owner => $user,
+    require => Exec["chown_hadoop"]
+  }
+    
+  # Ensure the config directory is available at /opt/hadoop-2.6.1/conf
   file { "${hadoop_conf}":
     ensure => directory,
-    mode => 744,
+    mode => 755,
     group => $group,
     owner => $user,
     require => Exec["unpack_hadoop"]
@@ -50,7 +69,7 @@ class hadoop {
   file { "${hadoop_conf}/slaves":
     content => template('hadoop/slaves'),
     ensure => present,
-    mode => 744,
+    mode => 644,
     group => $group,
     owner => $user,
     require => File["${hadoop_conf}"]
@@ -59,7 +78,7 @@ class hadoop {
   file { "${hadoop_conf}/hadoop-env.sh":
     content => template('hadoop/hadoop-env.sh'),
     ensure => present,
-    mode => 744,
+    mode => 644,
     group => $group,
     owner => $user,
     require => File["${hadoop_conf}"]
@@ -68,7 +87,7 @@ class hadoop {
   file { "${hadoop_conf}/yarn-env.sh":
     content => template('hadoop/yarn-env.sh'),
     ensure => present,
-    mode => 744,
+    mode => 644,
     group => $group,
     owner => $user,
     require => File["${hadoop_conf}"]
@@ -77,7 +96,7 @@ class hadoop {
   file { "${hadoop_conf}/mapred-env.sh":
       content => template('hadoop/mapred-env.sh'),
     ensure => present,
-    mode => 744,
+    mode => 644,
     group => $group,
     owner => $user,
     require => File["${hadoop_conf}"]
@@ -118,8 +137,5 @@ class hadoop {
     owner => $user,
     require => File["${hadoop_conf}"]
   }
-
-
-
     
 }
