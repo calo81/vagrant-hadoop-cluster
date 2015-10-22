@@ -2,8 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
   <property>
-    <name>mapred.job.tracker</name>
-    <value><%= @hadoop_master %>:9001</value>
-    <description>The host and port that the MapReduce job tracker runs at.</description>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
   </property>
 </configuration>

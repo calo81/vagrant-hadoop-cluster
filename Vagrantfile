@@ -6,6 +6,7 @@
 # http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.15/bk_cluster-planning-guide/content/typical-hadoop-cluster-hardware.html
 # https://github.com/Cascading/vagrant-cascading-hadoop-cluster/blob/2.7/Vagrantfile
 # https://github.com/apache/bigtop/tree/master/bigtop-deploy/vm/vagrant-puppet-vm
+# http://codiply.com/blog/hadoop-2-6-0-cluster-setup-on-ubuntu-14-04 - Good one for hadoop file config
 
 
 # Warning

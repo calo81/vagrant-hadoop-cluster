@@ -1,5 +1,4 @@
 # Variable declaration
-
 # User running hadoop services and inter cluster communication
 $user = "hadoop"
 $group = "hadoop"
@@ -28,7 +27,7 @@ class { '::ntp':
   require => Class["timezone"],
 }
 
-# Create the hadoop user hdpusr and its home directory
+# Create the hadoop user hadoop and its home directory
 group { "${group}":
   ensure => "present",
   require => Class["::ntp"],
@@ -60,7 +59,6 @@ file { "/home/${user}":
 #  content => "%hadoop ALL=(ALL) NOPASSWD: ALL",
 #  require =>  [ User["${user}"], Group["${group}"] , Class["sudo"] ],
 #}
-
   
 # configure /etc/hosts in all nodes so that they can talk to each other
 host { "${hadoop_master_hn}":
@@ -76,8 +74,7 @@ host { "${hadoop_slave3_hn}":
   ip => "${hadoop_slave3_ip}",
 }  
 
-
 include ssh
 include java
-# include hadoop
+include hadoop
 

@@ -14,4 +14,8 @@
     <name>dfs.support.append</name>
     <value>true</value>
   </property>
+  <property>
+    <name>dfs.blocksize</name>
+    <value>8388608</value>
+  </property>
 </configuration>
