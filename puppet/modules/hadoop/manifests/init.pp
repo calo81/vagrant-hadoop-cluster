@@ -5,7 +5,7 @@ class hadoop {
   $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"             # /opt/hadoop-2.6.1
   $hadoop_conf = "${hadoop_home}/conf"                                 # /opt/hadoop-2.6.1/conf
   $hadoop_log  = "/var/log/hadoop"
-  $hadoop_data = "/home/hadoop/data"
+  $hadoop_data = "/home/hadoop/workspace"
   $apache_mirror = "http://apache.cs.utah.edu/hadoop/common"
   
   # Hadoop binary download and unpacking
@@ -56,7 +56,8 @@ class hadoop {
     owner => $user,
     require => Exec["chown_hadoop"]
   }
-    
+
+
   # Ensure the config directory is available at /opt/hadoop-2.6.1/conf
   file { "${hadoop_conf}":
     ensure => directory,

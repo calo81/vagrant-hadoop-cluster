@@ -5,4 +5,12 @@
     <name>yarn.resourcemanager.hostname</name>
     <value><%= @hadoop_master_hn %></value>
   </property>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
 </configuration>
