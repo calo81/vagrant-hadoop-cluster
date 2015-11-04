@@ -85,8 +85,8 @@ Web Consoles
 ------------
 Once the services are up and running on the master as well as the slave, as noted in the test mentioed in the above, the followin web consoles are available for login
 
-HDFS - [http://192.168.48.10:50070/dfshealth.html#tab-overview]
-YARN - http://192.168.48.10:8088/cluster/cluster
+  * HDFS - [http://192.168.48.10:50070/dfshealth.html#tab-overview]
+  * YARN - http://192.168.48.10:8088/cluster/cluster
 
 System Details
 --------------
