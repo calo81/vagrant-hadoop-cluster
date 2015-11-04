@@ -36,21 +36,21 @@ nodes = [
     :ip => '192.168.48.11', 
     :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
     :cpus => '1',  
-    :ram => '1024' },
+    :ram => '768' },
   
   { :type => 'slave',   
     :hostname => 'hadoop2.local',   
     :ip => '192.168.48.12', 
     :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
     :cpus => '1',  
-    :ram => '1024' },
+    :ram => '768' },
   
   { :type => 'slave',   
     :hostname => 'hadoop3.local',   
     :ip => '192.168.48.13', 
     :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
     :cpus => '1',  
-    :ram => '1024' },
+    :ram => '768' },
   
 ]
 
@@ -66,25 +66,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       node_config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--cpus", node[:cpus]]
         vb.customize ["modifyvm", :id, "--memory", node[:ram]]
-        # vb.gui = true                               # uncomment this line to debug virtual machine startup issues
+        # vb.gui = true                             # uncomment this line to debug virtual machine startup issues
+      end
+      # Shell provisioning - bootstrap for puppet
+      # install - git, ruby and librarian-puppet
+      node_config.vm.provision :shell, :path => 'shell/main.sh'
+      # Puppet provisioning
+      node_config.vm.provision "puppet" do |puppet|
+        # puppet.options = "--verbose --debug"      # uncomment to enable verbose mode
+        puppet.manifests_path = "puppet/manifests"
+        puppet.manifest_file = node[:type] + ".pp"
+        puppet.module_path = "puppet/modules"
       end
     end
   end
-      
-      
-  # Provisioning is outside-in, so first all provisioning mentioned here will be executed
-  # then any machine specific provisioning is completed
-  
-  # Shell provisioning - bootstrap for puppet
-  # install - git, ruby and librarian-puppet
-  config.vm.provision :shell, :path => 'shell/main.sh'
-  
-  # Puppet provisioning
-  config.vm.provision "puppet" do |puppet|
-    puppet.manifests_path = "puppet/manifests"
-    puppet.manifest_file  = "site.pp"
-    puppet.module_path = "puppet/modules"
-  end
-  
-
 end

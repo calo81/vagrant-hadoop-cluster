@@ -1,9 +1,9 @@
 # The java implementation to use.
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
-export HADOOP_HOME=<%= @hadoop_home %>
-export HADOOP_CONF_DIR=<%= @hadoop_conf %>
-export HADOOP_LOG_DIR=<%= @hadoop_log %>
+export HADOOP_HOME=<%= scope['hadoop::hadoop_home'] %>
+export HADOOP_CONF_DIR=<%= scope['hadoop::hadoop_conf'] %>
+export HADOOP_LOG_DIR=<%= scope['hadoop::hadoop_log'] %>
 
 ## Extra Java CLASSPATH elements.  Automatically insert capacity-scheduler.
 #for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do

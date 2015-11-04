@@ -7,7 +7,7 @@ class java {
 
   package { "openjdk-7-jdk" :
     ensure => present,
-    require => [ Exec['apt-get update'], File["/home/${user}"] ]
+    require => [ Exec['apt-get update'], File["/home/${vars::user}"] ]
   }
 
   file { "/etc/profile.d/java_envvars.sh":

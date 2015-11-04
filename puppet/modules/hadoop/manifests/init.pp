@@ -24,7 +24,7 @@ class hadoop {
   }
 
   exec { "chown_hadoop":
-    command => "chown -R ${user}:${group} ${hadoop_home}",
+    command => "chown -R ${vars::user}:${vars::group} ${hadoop_home}",
     path => $path,
     require => Exec["unpack_hadoop"]    
   }
@@ -43,8 +43,8 @@ class hadoop {
   file { "${hadoop_log}":
     ensure => directory,
     mode => 755,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => Exec["chown_hadoop"]
   }
     
@@ -52,8 +52,8 @@ class hadoop {
   file { "${hadoop_data}":
     ensure => directory,
     mode => 755,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => Exec["chown_hadoop"]
   }
 
@@ -62,8 +62,8 @@ class hadoop {
   file { "${hadoop_conf}":
     ensure => directory,
     mode => 755,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => Exec["unpack_hadoop"]
   }
 
@@ -71,8 +71,8 @@ class hadoop {
     content => template('hadoop/slaves'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
     
@@ -80,8 +80,8 @@ class hadoop {
     content => template('hadoop/hadoop-env.sh'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
 
@@ -89,8 +89,8 @@ class hadoop {
     content => template('hadoop/yarn-env.sh'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
     
@@ -98,8 +98,8 @@ class hadoop {
       content => template('hadoop/mapred-env.sh'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
     
@@ -107,8 +107,8 @@ class hadoop {
     content => template('hadoop/core-site.xml'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
     
@@ -116,8 +116,8 @@ class hadoop {
     content => template('hadoop/hdfs-site.xml'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
 
@@ -125,8 +125,8 @@ class hadoop {
     content => template('hadoop/mapred-site.xml'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
 
@@ -134,9 +134,18 @@ class hadoop {
     content => template('hadoop/yarn-site.xml'),
     ensure => present,
     mode => 644,
-    group => $group,
-    owner => $user,
+    group => "${vars::group}",
+    owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-    
+  
+    file { "${hadoop_conf}/capacity-scheduler.xml":
+    content => template('hadoop/capacity-scheduler.xml'),
+    ensure => present,
+    mode => 644,
+    group => "${vars::group}",
+    owner => "${vars::user}",
+    require => File["${hadoop_conf}"]
+  }
+  
 }

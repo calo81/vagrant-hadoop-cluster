@@ -1,5 +1,5 @@
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-export YARN_LOG_DIR=<%= @hadoop_log %>
+export YARN_LOG_DIR=<%= scope['hadoop::hadoop_log'] %>
 
 ## User for YARN daemons
 #export HADOOP_YARN_USER=${HADOOP_YARN_USER:-yarn}
