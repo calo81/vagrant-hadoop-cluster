@@ -43,7 +43,7 @@ This will take some time to provision 4 nodes.
 
 ### Step 4. Format namenode and start services
 
-	vagrant sh master.local
+	vagrant ssh master.local
     
 Once you are in the VM guest master.local, enter the following commands 
 	
@@ -65,6 +65,7 @@ Once you are in the VM guest master.local, enter the following commands
     Last login: Tue Nov  3 14:22:50 2015 from 10.0.2.2
     vagrant@master:~$ sudo su - hadoop
     hadoop@master:~$ jps
+    18951 ResourceManager
     15454 Jps
     14634 SecondaryNameNode
     14447 NameNode
