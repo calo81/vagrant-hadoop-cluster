@@ -8,7 +8,7 @@ Motivation
   * to understand the workings of hadoop in an actual cluster environment
   * to provide a platform to quickly evaluate projects in the Hadoop ecosystem
   * and to be able to do this on a single machine
-  
+
 System Requirements
 -------------------
 
@@ -19,7 +19,7 @@ Installation
 
 ### Step 1. System Set-up
 
-Go ahead and get the following tools installed on your system (Referred to as `HOST` throughout the document) 
+Go ahead and get the following tools installed on your system (Referred to as `HOST` throughout the document)
 
 1. [Git](http://git-scm.com/downloads)
 2. [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
@@ -44,14 +44,14 @@ This will take some time to provision 4 nodes.
 ### Step 4. Format namenode and start services
 
 	vagrant ssh master.local
-    
-Once you are in the VM guest master.local, enter the following commands 
-	
+
+Once you are in the VM guest master.local, enter the following commands
+
     sudo su - hadoop
     hdfs namenode -format
     start-dfs.sh
     start-yarn.sh
-    
+
 ### Step 5. Validate below services are running
 
     hekapadi@HEKAPADI-W7-3 ~/Workspaces/Personal/vagrant-hadoop-cluster (master)
@@ -81,7 +81,7 @@ Once you are in the VM guest master.local, enter the following commands
     12670 DataNode
     12772 NodeManager
     13206 Jps
-    
+
 Web Consoles
 ------------
 Once the services are up and running on the master as well as the slave, as noted in the test mentioed in the above, the followin web consoles are available for login
@@ -94,9 +94,9 @@ System Details
 
 Note - Items not hyperlinked are not yet installed, but are in the plan
 
-1. [Ubuntu 12.04 64 bit](https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-12.04-64-puppet)
-2. [OpenJDK 7](http://openjdk.java.net/install/index.html)
-3. [Hadoop 2.6.1](https://hadoop.apache.org/docs/r2.6.1/)
+1. [Ubuntu 14.04 64 bit](https://atlas.hashicorp.com/puppetlabs/boxes/ubuntu-14.04-64-puppet)
+2. [OpenJDK 8](http://openjdk.java.net/install/index.html)
+3. [Hadoop 2.7.2](http://hadoop.apache.org/docs/r2.7.2/)
 4. CRAN R and  RStudio Server Community Edition
 5. Spark
 6. Crunch/Cascading/CDAP Cask
@@ -105,6 +105,3 @@ Note - Items not hyperlinked are not yet installed, but are in the plan
 9. Flume and Kafka
 10. Storm / Flink
 11. Oozie
-
-
-
