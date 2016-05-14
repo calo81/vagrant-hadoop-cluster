@@ -24,43 +24,39 @@ VAGRANTFILE_API_VERSION = "2"
 # increase ram as needed, add additional slave nodes if needed.
 
 nodes = [
-  { :type => 'master',  
-    :hostname => 'master.local',    
-    :ip => '192.168.48.10', 
-    :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
-    :cpus => '1',  
-    :ram => '2048' },
-  
-  { :type => 'slave',   
-    :hostname => 'hadoop1.local',   
-    :ip => '192.168.48.11', 
-    :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
-    :cpus => '1',  
-    :ram => '768' },
-  
-  { :type => 'slave',   
-    :hostname => 'hadoop2.local',   
-    :ip => '192.168.48.12', 
-    :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
-    :cpus => '1',  
-    :ram => '768' },
-  
-  { :type => 'slave',   
-    :hostname => 'hadoop3.local',   
-    :ip => '192.168.48.13', 
-    :box => 'puppetlabs/ubuntu-12.04-64-puppet',  
-    :cpus => '1',  
-    :ram => '768' },
-  
+  { :type     => 'master',
+    :hostname => 'master.local',
+    :ip       => '192.168.48.10',
+    :cpus     => '1',
+    :ram      => '4096' },
+
+  { :type     => 'slave',
+    :hostname => 'hadoop1.local',
+    :ip       => '192.168.48.11',
+    :cpus     => '1',
+    :ram      => '2048' },
+
+  { :type     => 'slave',
+    :hostname => 'hadoop2.local',
+    :ip       => '192.168.48.12',
+    :cpus     => '1',
+    :ram      => '2048' },
+
+  { :type     => 'slave',
+    :hostname => 'hadoop3.local',
+    :ip       => '192.168.48.13',
+    :cpus     => '1',
+    :ram      => '2048' },
+
 ]
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  
+
   nodes.each do |node|
     config.vm.define node[:hostname] do |node_config|
-      node_config.vm.box = node[:box]
-      node_config.vm.box_version = "1.0.1"  		# optional, can be removed to default to latest version
-      node_config.vm.box_check_update = false		# disabling for now 
+      node_config.vm.box = "puppetlabs/ubuntu-14.04-64-puppet"
+      node_config.vm.box_version = "1.0.3"  		# optional, can be removed to default to latest version
+      node_config.vm.box_check_update = false		# disabling for now
       node_config.vm.host_name = node[:hostname]
       node_config.vm.network "private_network", ip: node[:ip]
       node_config.vm.provider :virtualbox do |vb|
@@ -73,8 +69,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       node_config.vm.provision :shell, :path => 'shell/main.sh'
       # Puppet provisioning
       node_config.vm.provision "puppet" do |puppet|
-        # puppet.options = "--verbose --debug"      # uncomment to enable verbose mode
-        puppet.manifests_path = "puppet/manifests"
+        #puppet.options = "--verbose --debug"      # uncomment to enable verbose mode
+        puppet.environment_path = "puppet/environments"
+        puppet.environment = "dev"
+        puppet.manifests_path = "puppet/environments/dev/manifests"
         puppet.manifest_file = node[:type] + ".pp"
         puppet.module_path = "puppet/modules"
       end

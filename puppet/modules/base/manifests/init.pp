@@ -1,5 +1,5 @@
 class base {
-  
+
   require vars
 
   # Set Timezone
@@ -25,22 +25,22 @@ class base {
     shell => "/bin/bash",
     managehome => true,
     gid => $group,
-    require => Group["${vars::group}"],  
+    require => Group["${vars::group}"],
   }
   file { "/home/${vars::user}":
     ensure => "directory",
     owner  => "${vars::user}",
     group  => "${vars::group}",
-    mode   => 700,
+    mode   => "700",
     require =>  [ User["${vars::user}"], Group["${vars::group}"] ],
   }
 
-  ## Enable password less sudo for hadoop user - do I need this ? 
+  ## Enable password less sudo for hadoop user - do I need this ?
   #class { "sudo":
   #  purge => false,
   #  config_file_replace => false,
   #}
-  #sudo::conf { 'hadoop': 
+  #sudo::conf { 'hadoop':
   #  priority => 10,
   #  content => "%hadoop ALL=(ALL) NOPASSWD: ALL",
   #  require =>  [ User["${user}"], Group["${group}"] , Class["sudo"] ],
@@ -52,13 +52,12 @@ class base {
   }
   host { "${vars::hadoop_slave1_hn}":
         ip => "${vars::hadoop_slave1_ip}",
-  }  
+  }
   host { "${vars::hadoop_slave2_hn}":
     ip => "${vars::hadoop_slave2_ip}",
   }
   host { "${vars::hadoop_slave3_hn}":
     ip => "${vars::hadoop_slave3_ip}",
   }
-    
-}
 
+}

@@ -7,7 +7,7 @@ class hadoop {
   $hadoop_log  = "/var/log/hadoop"
   $hadoop_data = "/home/hadoop/workspace"
   $apache_mirror = "http://apache.cs.utah.edu/hadoop/common"
-  
+
   # Hadoop binary download and unpacking
   exec { "download_hadoop":
     command => "wget -O /tmp/hadoop.tar.gz ${apache_mirror}/hadoop-${hadoop_version}/hadoop-${hadoop_version}.tar.gz",
@@ -28,30 +28,30 @@ class hadoop {
     path => $path,
     require => Exec["unpack_hadoop"]    
   }
-  
-  # Add Hadoop env variable file to profile.d  
+
+  # Add Hadoop env variable file to profile.d
   file { "/etc/profile.d/hadoop_envvars.sh":
     source => "puppet:///modules/hadoop/hadoop_envvars.sh",
     ensure => present,
-    mode => 755,
+    mode => "755",
     owner => "root",
     group => "root",
     require => Exec["chown_hadoop"]
-  }  
-      
+  }
+
   # Ensure the log directory is available
   file { "${hadoop_log}":
     ensure => directory,
-    mode => 755,
+    mode => "755",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => Exec["chown_hadoop"]
   }
-    
+
   # Ensure the data directory is available
   file { "${hadoop_data}":
     ensure => directory,
-    mode => 755,
+    mode => "755",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => Exec["chown_hadoop"]
@@ -61,7 +61,7 @@ class hadoop {
   # Ensure the config directory is available at /opt/hadoop-2.6.1/conf
   file { "${hadoop_conf}":
     ensure => directory,
-    mode => 755,
+    mode => "755",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => Exec["unpack_hadoop"]
@@ -70,16 +70,16 @@ class hadoop {
   file { "${hadoop_conf}/slaves":
     content => template('hadoop/slaves'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-    
+
   file { "${hadoop_conf}/hadoop-env.sh":
     content => template('hadoop/hadoop-env.sh'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
@@ -88,34 +88,34 @@ class hadoop {
   file { "${hadoop_conf}/yarn-env.sh":
     content => template('hadoop/yarn-env.sh'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-    
+
   file { "${hadoop_conf}/mapred-env.sh":
       content => template('hadoop/mapred-env.sh'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-    
+
   file { "${hadoop_conf}/core-site.xml":
     content => template('hadoop/core-site.xml'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-    
+
   file { "${hadoop_conf}/hdfs-site.xml":
     content => template('hadoop/hdfs-site.xml'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
@@ -124,7 +124,7 @@ class hadoop {
   file { "${hadoop_conf}/mapred-site.xml":
     content => template('hadoop/mapred-site.xml'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
@@ -133,19 +133,19 @@ class hadoop {
   file { "${hadoop_conf}/yarn-site.xml":
     content => template('hadoop/yarn-site.xml'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-  
+
     file { "${hadoop_conf}/capacity-scheduler.xml":
     content => template('hadoop/capacity-scheduler.xml'),
     ensure => present,
-    mode => 644,
+    mode => "644",
     group => "${vars::group}",
     owner => "${vars::user}",
     require => File["${hadoop_conf}"]
   }
-  
+
 }

@@ -13,7 +13,7 @@ class java {
   file { "/etc/profile.d/java_envvars.sh":
     source => "puppet:///modules/java/java_envvars.sh",
     ensure => present,
-    mode => 755,
+    mode => "755",
     owner => "root",
     group => "root",
     require => Package["openjdk-7-jdk"]
