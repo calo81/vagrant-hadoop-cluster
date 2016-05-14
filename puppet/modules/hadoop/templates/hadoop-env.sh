@@ -1,5 +1,5 @@
 # The java implementation to use.
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 export HADOOP_HOME=<%= scope['hadoop::hadoop_home'] %>
 export HADOOP_CONF_DIR=<%= scope['hadoop::hadoop_conf'] %>
@@ -58,7 +58,7 @@ export HADOOP_HEAPSIZE="512"
 ####
 #
 ## The directory where pid files are stored. /tmp by default.
-## NOTE: this should be set to a directory that can only be written to by 
+## NOTE: this should be set to a directory that can only be written to by
 ##       the user that will run the hadoop daemons.  Otherwise there is the
 ##       potential for a symlink attack.
 #export HADOOP_PID_DIR=${HADOOP_PID_DIR}

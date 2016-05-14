@@ -1,4 +1,4 @@
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export YARN_LOG_DIR=<%= scope['hadoop::hadoop_log'] %>
 
 ## User for YARN daemons
@@ -15,14 +15,14 @@ export YARN_LOG_DIR=<%= scope['hadoop::hadoop_log'] %>
 #  #echo "run java in $JAVA_HOME"
 #  JAVA_HOME=$JAVA_HOME
 #fi
-#  
+#
 #if [ "$JAVA_HOME" = "" ]; then
 #  echo "Error: JAVA_HOME is not set."
 #  exit 1
 #fi
 #
 #JAVA=$JAVA_HOME/bin/java
-#JAVA_HEAP_MAX=-Xmx1000m 
+#JAVA_HEAP_MAX=-Xmx1000m
 #
 ## For setting YARN specific HEAP sizes please use this
 ## Parameter and set appropriately
@@ -105,7 +105,7 @@ export YARN_LOG_DIR=<%= scope['hadoop::hadoop_log'] %>
 #YARN_OPTS="$YARN_OPTS -Dyarn.root.logger=${YARN_ROOT_LOGGER:-INFO,console}"
 #if [ "x$JAVA_LIBRARY_PATH" != "x" ]; then
 #  YARN_OPTS="$YARN_OPTS -Djava.library.path=$JAVA_LIBRARY_PATH"
-#fi  
+#fi
 #YARN_OPTS="$YARN_OPTS -Dyarn.policy.file=$YARN_POLICYFILE"
 #
 #

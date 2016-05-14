@@ -1,6 +1,6 @@
 class hadoop {
 
-  $hadoop_version = "2.6.1"
+  $hadoop_version = "2.7.2"
   $install_dir = "/opt"
   $hadoop_home = "${install_dir}/hadoop-${hadoop_version}"             # /opt/hadoop-2.6.1
   $hadoop_conf = "${hadoop_home}/conf"                                 # /opt/hadoop-2.6.1/conf
@@ -13,7 +13,7 @@ class hadoop {
     command => "wget -O /tmp/hadoop.tar.gz ${apache_mirror}/hadoop-${hadoop_version}/hadoop-${hadoop_version}.tar.gz",
     path => $path,
     unless => "ls ${install_dir} | grep hadoop-${hadoop_version}",
-    require => Package["openjdk-7-jdk"]
+    require => Package["openjdk-8-jdk"]
   }
 
   exec { "unpack_hadoop" :
@@ -26,7 +26,7 @@ class hadoop {
   exec { "chown_hadoop":
     command => "chown -R ${vars::user}:${vars::group} ${hadoop_home}",
     path => $path,
-    require => Exec["unpack_hadoop"]    
+    require => Exec["unpack_hadoop"]
   }
 
   # Add Hadoop env variable file to profile.d
