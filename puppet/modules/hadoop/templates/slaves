@@ -1,0 +1,3 @@
+<%= scope['vars::hadoop_slave1_hn'] %>
+<%= scope['vars::hadoop_slave2_hn'] %>
+<%= scope['vars::hadoop_slave3_hn'] %>
